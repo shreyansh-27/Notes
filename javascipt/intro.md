@@ -44,9 +44,9 @@ All this happens on a single thread.
 
 # Java vs JavaScript
 | Java | JavaScript | 
-| ____ | ___________ |
+|:---- |:---------- |
 | Strongly typed oop lang | Weakly type, flexible |
-|can't run in browser | can|
+|can't run in browser | can run in browser|
 
 # ECMA (European Computer Manufacturers Associaion)
 JS submitted to ecma for standardizing the language
