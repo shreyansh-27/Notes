@@ -81,3 +81,20 @@ console.log(name, age);
 // This too will print name and age: Max, 30
 // Even though age is defined in block scope
 ```
+## Hoisting
+The JS engine before running the code line by line, goes through the entire code and store the functions so that they can be available when needed
+It does a similar thing with variable declaration too, what the engine does is basically move the declaration to the top of the code
+
+Earlier, in es5, when hoisting was done, when a variable was declared using var, it defined the variable to **undefined**
+But now, in es6, it does not do that and that results in an exception
+
+```
+console.log(a);
+var a;
+> logs undefined
+
+console.log(a);
+let/const a;
+> logs exception
+
+```
