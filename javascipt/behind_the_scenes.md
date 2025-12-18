@@ -98,3 +98,65 @@ let/const a;
 > logs exception
 
 ```
+
+## Strict Mode
+JS is a very forgiving language and will let you do about anything that should be restricted
+Like letting you declare
+```
+username = "meow";
+```
+and when you'll print this, it will, behind the scenes add a var to it automatically
+
+Or it can also let you use reserved keywords like undefined for declaring variables
+```
+let undefined = "moew";
+```
+This will work
+
+To restrict this, we at the top add 'use strict';
+and now the above codes will throw exceptions
+
+## Javascipt script engine(Parsing and compilation)
+
+![how js engine works](./assets/images/js-engine.png)
+
+The flow is pretty similar to how, java does it
+Our code is first interpreted by the JS engine, in case of chrome it's v8.
+It gets converted to byte code, line by line by the interpreter.
+Then compiled by the JIT(just in time compiler, called turbo fan in chrome) to machine code
+This machine code is handed to the OS for faster execution
+
+> Both interpretation and compilation happens side by side, as soon as the interpreter is done, JIT comes in
+
+The engine, also adds some optimizations like, if the code is not changed, there is no need to do the whole interpreting + compiling process all again
+Instead it uses the already stored code
+
+The engine, also adds some additional features, called the browser api, that let us communicate with the browser code
+These let us do things like getting the user's location, etc. 
+The api is loaded with the machine code, so the functions are known by the code
+
+## Code Exucution
+
+![How javasciprt code is executed behind the scene](./assets/images/code-execution.png)
+
+### Heap
+This is where our long term data is stored, that will be used throughout the execution of our program
+This is done by browser in conjucture with the os
+Memory management is done here
+
+### Stack
+This is basically the call stack which stores the info about which function will be executed first
+> **The function that is called in here is always called anonymous, which is basically the script**
+After each function is done being executed, this anonymous function is also popped off
+
+*But what about the asynchronous functions or event listeners?*
+
+They wait for a certain thing to happen before they get executed
+So how will they be executed if the stack is clear?
+
+**They are managed by the Event Loop**
+
+> One important thing to note is that javascript is single threaded, so only one thing happens at a time
+
+By event loop, for now we can say that they are managed by the browser instead of the javascipt engine.
+So they work even after code is done executing
