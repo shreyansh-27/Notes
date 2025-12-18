@@ -91,13 +91,13 @@ But now, in es6, it does not do that and that results in an exception
 ```
 console.log(a);
 var a;
+```
 > logs undefined
-
+```
 console.log(a);
 let/const a;
-> logs exception
-
 ```
+> logs exception
 
 ## Strict Mode
 JS is a very forgiving language and will let you do about anything that should be restricted
@@ -106,13 +106,11 @@ Like letting you declare
 username = "meow";
 ```
 and when you'll print this, it will, behind the scenes add a var to it automatically
-
 Or it can also let you use reserved keywords like undefined for declaring variables
 ```
 let undefined = "moew";
 ```
 This will work
-
 To restrict this, we at the top add 'use strict';
 and now the above codes will throw exceptions
 
@@ -148,15 +146,12 @@ Memory management is done here
 This is basically the call stack which stores the info about which function will be executed first
 > **The function that is called in here is always called anonymous, which is basically the script**
 After each function is done being executed, this anonymous function is also popped off
-
 *But what about the asynchronous functions or event listeners?*
 
 They wait for a certain thing to happen before they get executed
 So how will they be executed if the stack is clear?
-
 **They are managed by the Event Loop**
 
 > One important thing to note is that javascript is single threaded, so only one thing happens at a time
-
 By event loop, for now we can say that they are managed by the browser instead of the javascipt engine.
 So they work even after code is done executing
