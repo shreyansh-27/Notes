@@ -155,3 +155,4 @@ So how will they be executed if the stack is clear?
 > One important thing to note is that javascript is single threaded, so only one thing happens at a time
 By event loop, for now we can say that they are managed by the browser instead of the javascipt engine.
 So they work even after code is done executing
+
