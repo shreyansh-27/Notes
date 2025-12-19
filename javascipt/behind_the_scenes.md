@@ -213,3 +213,59 @@ console.log(a === b);
 
 > The address of a and b are different
 
+## Garbage Collection
+
+The heap is the memory of our program
+It contains data that is useful for the execution of our program but at some point, the data is no longer useful
+It should be removed or it will just occupy crucial space that can be used for something else
+This is done by the garbage collector of the javascript engine
+We can't force it to do it, we can only suggest it
+
+```
+let a = "meow";
+a = null;
+```
+> This will let the GC know that 'a' is no longer being referenced and can be removed
+It will periodically check for unused objects and remove them
+
+### Memory Leak
+If an object is not being used but we've written the code in a way that doesn't let the GC know that the object is no longer being used,
+the memory will not be freed and stay used. This is called memory leak.
+
+```
+html
+<btn id='btn1'>btn1</btn>
+<btn id='btn2'>btn2</btn>
+
+js
+
+const btn1 = document.getElementById('btn1');
+const btn2 = document.getElementById('btn2');
+const messageInput = document.getElementById('msg');
+
+function printMessage(){
+    const value = messageInput.value;
+    console.log(value || 'Clicked me');
+}
+
+function addListener() {
+    btn2.addEventListener("click", printMessage);
+}
+
+btn1.addEventListener("click", addListener);
+```
+
+When btn1 is clicked, it adds a event listener on btn2
+which when clicked will print the value of input field
+
+What happens when click the btn1 multiple times?
+Will it add multiple event listeners to it?
+**No**
+
+The JS engine is optimised enough to overwrite the old listener with the new one and not add the same 
+This is good because we don't want multiple listeners on the same btn
+
+> Though this can be overridden if we are using an anonymous function, i.e., when btn1 is clicked
+> It adds a new anonymous event listener to btn2
+
+**Bad and causes memory leak**
