@@ -156,3 +156,60 @@ So how will they be executed if the stack is clear?
 By event loop, for now we can say that they are managed by the browser instead of the javascipt engine.
 So they work even after code is done executing
 
+## Primitive vs Reference Type
+
+![primitive vs reference type image](./assets/images/primitive-reference.png)
+
+Primitive type when assigned to another variable, get copied only by their value and not address
+So if we change the original variable, it won't affect the new variable at all
+
+Reference types on the other hand are different
+They store the memory of the variable and not the value itself
+This is done because reference types are heavy to store and it's faster to store the address than the whole object
+
+```
+int a = 3;
+int b = a;
+
+a++;
+console.log(b);
+// > 3
+```
+> The value of b doesn't change even though the value of a was
+
+```
+int a = [1,2];
+int b = a;
+
+a.push(3);
+
+console.log(b);
+// > [1,2,3]
+```
+> Even though 3 was added to array a, when b was printed with 1,2,3
+This is because, array is a reference type and when we assign a variable to an array, we store the address of the array and not the contents of the array
+
+One more confusing thing is we can do this:
+
+```
+const a = [1,2];
+a.push(3);
+
+console.log(a);
+// this will print [1,2,3]
+```
+> This shouldn't be working because a const can't be changed
+
+The reason this works is because, we are storing the address of the array in a
+The address can't change but the contents of it can
+
+```
+const a = [1,2];
+const b = [1,2];
+
+console.log(a === b);
+// this will print false
+```
+
+> The address of a and b are different
+
